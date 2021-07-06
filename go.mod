@@ -1,5 +1,7 @@
 module github.com/postfinance/kubewire
 
+go 1.16
+
 require (
 	cloud.google.com/go v0.34.0 // indirect
 	contrib.go.opencensus.io/exporter/ocagent v0.4.1 // indirect

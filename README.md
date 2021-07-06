@@ -6,7 +6,6 @@ kubewire is a Kubernetes integrity checker which acts as a tripwire for global
 Kubernetes resources or namespaced resources which could impact the
 whole cluster.
 
-*Status*: Alpha, anything can change at any time
 
 ## Use case
 Kubernetes cluster administrators have great power. This means that
@@ -30,7 +29,8 @@ In order to compile the latest version from source, do a
 go get -u github.com/postfinance/kubewire
 ```
 
-Precompiled binaries are available on [Github Releases](https://github.com/postfinance/kubewire/releases)
+New precompiled binaries are available on [Github Releases](https://github.com/shakenfr/kubewire/releases)
+Due to initial problem on some linux version, I re-compile it in a new version.
 
 ## Usage
 By default, all non-namespaced resources will be scanned. In addition to that,
