@@ -36,7 +36,7 @@ func Resources(config *rest.Config) ([]report.Resource, error) {
 				Kind:         resource.Kind,
 				Namespaced:   resource.Namespaced,
 				Name:         resource.Name,
-				Listable:     sliceContains(resource.Verbs, "list"),
+				Verbs:        []string(resource.Verbs),
 			}
 			rep = append(rep, res)
 		}
@@ -64,7 +64,7 @@ func ResourceObjects(config *rest.Config, namespaces []string) ([]report.Resourc
 
 	rep := []report.ResourceObject{}
 	for _, resource := range resources {
-		if !resource.Listable {
+		if !sliceContains(resource.Verbs, "list") {
 			// do not try to scrape non listable objects
 			continue
 		}

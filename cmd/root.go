@@ -8,7 +8,7 @@ import (
 )
 
 // Version defines the kubewire version string
-var Version = "0.2"
+var Version = "0.4 (tag 0.1.0 from fork compiled by B.Bourdolle)"
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{

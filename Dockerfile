@@ -9,6 +9,7 @@ COPY . .
 
 RUN go get ./...
 RUN go test ./...
+#RUN go build -ldflags="-extldflags=-static" -o /bin/kubewire .
 RUN go build -o /bin/kubewire .
 
 # Build runtime

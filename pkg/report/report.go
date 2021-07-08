@@ -33,12 +33,7 @@ type Resource struct {
 	Name         string
 	Kind         string
 	Namespaced   bool
-	Listable     bool
-}
-
-// String returns a human readable string for this resource
-func (a Resource) String() string {
-	return fmt.Sprintf("%s %s/%s", a.GroupVersion, a.Kind, a.Name)
+	Verbs        []string
 }
 
 // Key returns a unique identifier for the Resource which can be
@@ -80,6 +75,12 @@ func (a Resource) Compare(b interface{}) []DiffReport {
 		ret = append(ret, DiffReport{Element: "Namespaced", A: ans, B: bns})
 	}
 
+	aVerbs := fmt.Sprintf("%v", a.Verbs)
+	bVerbs := fmt.Sprintf("%v", bres.Verbs)
+	if aVerbs != bVerbs {
+		ret = append(ret, DiffReport{Element: "Verbs", A: aVerbs, B: bVerbs})
+	}
+
 	if len(ret) == 0 {
 		return nil
 	}
@@ -103,11 +104,6 @@ func (a ResourceObject) Key() string {
 	// rune wise string comparison
 	group, version := SplitGroupVersionSafe(a.GroupVersion)
 	return fmt.Sprintf("%s %s %s %s %s", group, version, a.Resource, a.Namespace, a.Name)
-}
-
-// String returns a human readable key
-func (a ResourceObject) String() string {
-	return fmt.Sprintf("%s %s/%s/%s", a.GroupVersion, a.Resource, a.Namespace, a.Name)
 }
 
 // Compare compares two ResourceObjects, while b must be a ResourceObject or else it will panic
